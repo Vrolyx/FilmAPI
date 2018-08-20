@@ -11,6 +11,7 @@ namespace App\Controller;
 
 
 use App\Entity\Search;
+use App\Repository\APIConnector;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -32,19 +33,19 @@ class MovieController extends AbstractController
 
         $output = new ConsoleOutput();
 
-        $output->writeln("dfsgddfgsgfdsfg");
-
         if($form->isSubmitted() && $form->isValid()){
             // TODO: Code for API Parser
 
             $search = $form["search"]->getData();
 
+            $apiConnector = new APIConnector();
 
-            return new Response($search);
+            $result = $apiConnector->getMoviesByName($search);
 
+            return new Response($result[0]["title"]);
         }
 
-        return $this->render('default/new.html.twig', array(
+        return $this->render('default/index.html.twig', array(
             'form' => $form->createView(),
         ));
     }
