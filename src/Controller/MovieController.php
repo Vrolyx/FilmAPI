@@ -40,9 +40,12 @@ class MovieController extends AbstractController
 
             $apiConnector = new APIConnector();
 
-            $result = $apiConnector->getMoviesByName($search);
+            $results = $apiConnector->getMoviesByName($search);
 
-            return new Response($result[0]["title"]);
+            return $this->render('default/index.html.twig', array(
+                'form' => $form->createView(),
+                'results' => $results,
+            ));
         }
 
         return $this->render('default/index.html.twig', array(
