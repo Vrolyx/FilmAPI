@@ -21,7 +21,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class MovieController extends AbstractController
 {
-    public function index(Request $request){
+    public function list(Request $request){
         $search =  new Search();
 
         $form = $this->createFormBuilder()
