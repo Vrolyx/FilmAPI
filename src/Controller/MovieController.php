@@ -34,13 +34,19 @@ class MovieController extends AbstractController
         $output = new ConsoleOutput();
 
         if($form->isSubmitted() && $form->isValid()){
-            // TODO: Code for API Parser
+//            $paginator  = $this->get('knp_paginator');
 
             $search = $form["search"]->getData();
 
             $apiConnector = new APIConnector();
 
             $results = $apiConnector->getMoviesByName($search);
+
+//            $pagination = $paginator->paginate(
+//                $results,
+//                $request->query->getInt('page', 1),
+//                1/*limit per page*/
+//            );
 
             return $this->render('default/index.html.twig', array(
                 'form' => $form->createView(),
