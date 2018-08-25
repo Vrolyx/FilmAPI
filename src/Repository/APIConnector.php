@@ -10,7 +10,6 @@ namespace App\Repository;
 
 
 use GuzzleHttp\Client;
-use Symfony\Component\Console\Output\ConsoleOutput;
 
 class APIConnector
 {
