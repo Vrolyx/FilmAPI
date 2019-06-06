@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+
+    <h1></h1>
+    {% if results is defined %}
+        {% for result in results %}
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="https://image.tmdb.org/t/p/w500/{{ result.poster_path }}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{{ result.title }}</h5>
+                <p class="card-text">{{ result.overview }}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Cras justo odio</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">Vestibulum at eros</li>
+            </ul>
+        </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+
